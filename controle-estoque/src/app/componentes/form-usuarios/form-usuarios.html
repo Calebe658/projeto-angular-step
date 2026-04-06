@@ -1,14 +1,22 @@
-<form [formGroup]="loginForm" (ngSubmit)="enviar()">
+<form [formGroup]="registroForm" (ngSubmit)="enviar()">
     <input type="email" formControlName="email" placeholder="E-mail" />
-    <input type="password" formControlName="passwordHash" placeholder="Senha" />
-    <input type="password" formControlName="roles" placeholder="Role" />
-    <input type="text" formControlName="firstName" placeholder="Primeiro nome" />
-    <input type="text" formControlName="lastName" placeholder="Sobrenome" />
-    <input type="tel" formControlName="telephone" placeholder="Telefone" />
+    <input type="password" formControlName="password" placeholder="Senha" />
+    <input type="text" formControlName="name" placeholder="Primeiro nome" />
+
+    <!-- <input type="text" formControlName="roles" placeholder="Funções" /> -->
+
+    <select formControlName="cargo">
+        <option value="">Selecione a função</option>
+        <option value="operacional">Operacional</option>
+        <option value="admin">Administrador</option>
+        <option value="gerente">Gerente operacional</option>
+    </select>
 
     <button type="submit">Entrar</button>
 </form>
 
-<p *ngIf="loginForm.get('email')?.invalid">
+<p *ngIf="registroForm.get('email')?.invalid">
     E-mail inválido
 </p>
+
+<!-- operacional, administrador, gerente operacional. -->

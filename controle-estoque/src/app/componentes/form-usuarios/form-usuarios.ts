@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-form-usuarios',
@@ -8,18 +9,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrl: './form-usuarios.css',
 })
 export class FormUsuarios {
-  loginForm = new FormGroup({
+  registroForm = new FormGroup({
+    name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    passwordHash: new FormControl('', Validators.required),
-    roles: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    telephone: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    cargo: new FormControl('', Validators.required),
   });
 
+  constructor(public authService: Auth) {}
+
   enviar() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-    }
+    this.authService.registrar(this.registroForm.value).subscribe((usuario) => {
+      console.log(usuario);
+    });
   }
 }
