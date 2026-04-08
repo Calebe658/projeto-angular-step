@@ -1,32 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private usuario: any = null;
-  private apiUrl = 'https://projeto-node-step-git-main-fabios-projects-d2648344.vercel.app/api/auth/register';
+  apiUrl = 'https://projeto-node-step-git-main-fabios-projects-d2648344.vercel.app/api/auth';
+  apiKey = "Step@2025";
+  headers = new HttpHeaders({
+    'x-api-key': this.apiKey
+  });
 
   constructor(private http: HttpClient) { }
 
   registrar(usuario: any) {
-    return this.http.post(this.apiUrl, usuario);
+    return this.http.post(`${this.apiUrl}/register`, usuario, { headers: this.headers });
   }
 
-  login(nome: string, role: string) {
-    this.usuario = { nome, role };
+  login(usuario: any) {
+    return this.http.post(`${this.apiUrl}/login`, usuario, { headers: this.headers });
   }
 
-  logout() {
-    this.usuario = null;
+  // busca o token do usuario logado
+  me(usuario: any) {
+    return this.http.post(`${this.apiUrl}/me`, usuario, { headers: this.headers });
   }
 
-  estaLogado(): boolean {
-    return !!this.usuario;
-  }
-
-  temRole(role: string): boolean {
-    return this.usuario?.role === role;
-  }
 }

@@ -1,9 +1,7 @@
-<form [formGroup]="registroForm" (ngSubmit)="enviar()">
+<form [formGroup]="registroForm" (ngSubmit)="registrar()">
     <input type="email" formControlName="email" placeholder="E-mail" />
     <input type="password" formControlName="password" placeholder="Senha" />
     <input type="text" formControlName="name" placeholder="Primeiro nome" />
-
-    <!-- <input type="text" formControlName="roles" placeholder="Funções" /> -->
 
     <select formControlName="cargo">
         <option value="">Selecione a função</option>
@@ -18,5 +16,3 @@
 <p *ngIf="registroForm.get('email')?.invalid">
     E-mail inválido
 </p>
-
-<!-- operacional, administrador, gerente operacional. -->

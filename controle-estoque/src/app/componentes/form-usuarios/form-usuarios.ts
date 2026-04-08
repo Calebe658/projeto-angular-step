@@ -9,6 +9,8 @@ import { Auth } from '../../services/auth';
   styleUrl: './form-usuarios.css',
 })
 export class FormUsuarios {
+  constructor(private auth: Auth) {}
+
   registroForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -16,11 +18,14 @@ export class FormUsuarios {
     cargo: new FormControl('', Validators.required),
   });
 
-  constructor(public authService: Auth) {}
-
-  enviar() {
-    this.authService.registrar(this.registroForm.value).subscribe((usuario) => {
-      console.log(usuario);
-    });
+  registrar() {
+    this.auth.registrar(this.registroForm.value).subscribe({
+      next: (response) => {
+        console.log("Usuário registrado com sucesso!", response);
+      },
+      error: (error) => {
+        console.error("Erro ao registrar usuário:", error);
+      }
+    })
   }
 }
