@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './login.css',
 })
 export class Login {
+  errorMessage: string | undefined;
+
   constructor(private auth: Auth, private router: Router) { }
 
   loginForm = new FormGroup({
@@ -20,13 +22,14 @@ export class Login {
   login() {
     this.auth.login(this.loginForm.value).subscribe({
       next: (response: any) => {
-        console.log("Usuário registrado com sucesso!", response);
-        
+        localStorage.setItem('token', response.token);
         this.router.navigate(['/dashboard']);
       },
-      error: (error: any) => {
-        console.error("Erro ao fazer login:", error);
-      }
-    })
+
+      error: (respostaErro: any) => {
+        this.errorMessage = respostaErro.error.error;
+        alert(this.errorMessage);
+      },
+    });
   }
 }

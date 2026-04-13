@@ -4,13 +4,14 @@ import { Dashboard } from './componentes/dashboard/dashboard';
 import { PainelAdmin } from './componentes/painel-admin/painel-admin';
 import { Estoque } from './componentes/estoque/estoque';
 import { Login } from './componentes/login/login';
+import { AuthGuard } from './guardioes/auth-guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard },
+  { path: 'dashboard', component: Dashboard, canActivate: [AuthGuard] },
   { path: 'estoque', component: Estoque },
-  {path: 'painel-admin', component: PainelAdmin},
+  { path: 'painel-admin', component: PainelAdmin, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

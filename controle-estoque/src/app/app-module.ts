@@ -6,11 +6,11 @@ import { PainelAdmin } from './componentes/painel-admin/painel-admin';
 import { Dashboard } from './componentes/dashboard/dashboard';
 import { Estoque } from './componentes/estoque/estoque';
 import { Login } from './componentes/login/login';
-import { FormUsuarios } from './componentes/form-usuarios/form-usuarios';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioRegistro } from './componentes/formulario-registro/formulario-registro';
 
 @NgModule({
-  declarations: [App, PainelAdmin, Dashboard, Estoque, Login, FormUsuarios],
+  declarations: [App, PainelAdmin, Dashboard, Estoque, Login, FormularioRegistro],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

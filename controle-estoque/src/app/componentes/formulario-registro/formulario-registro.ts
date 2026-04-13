@@ -3,13 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from '../../services/auth';
 
 @Component({
-  selector: 'app-form-usuarios',
+  selector: 'app-formulario-registro',
   standalone: false,
-  templateUrl: './form-usuarios.html',
-  styleUrl: './form-usuarios.css',
+  templateUrl: './formulario-registro.html',
+  styleUrl: './formulario-registro.css',
 })
-export class FormUsuarios {
-  constructor(private auth: Auth) {}
+export class FormularioRegistro {
+  constructor(private auth: Auth) { }
 
   registroForm = new FormGroup({
     name: new FormControl('', Validators.required),
