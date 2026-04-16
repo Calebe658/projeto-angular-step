@@ -5,10 +5,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Auth {
-  apiUrl = 'https://projeto-node-step-git-main-fabios-projects-d2648344.vercel.app/api/auth';
-  apiKey = "Step@2025";
+  apiUrl: string = 'https://projeto-node-step-git-main-fabios-projects-d2648344.vercel.app/api/auth';
+  apiKey: string = "Step@2025";
   headers = new HttpHeaders({
-    'x-api-key': this.apiKey
+    'x-api-key': this.apiKey,
   });
 
   constructor(private http: HttpClient) { }
@@ -24,8 +24,13 @@ export class Auth {
   }
 
   // essa função nesse serviço serve para pegar os dados do usuário logado na API e verificar se ele está logado ou não.
-  me(usuario: any) {
-    return this.http.post(`${this.apiUrl}/me`, usuario, { headers: this.headers });
+  verificarUsuario(token: any) {
+    const headerComToken = new HttpHeaders({
+      'x-api-key': this.apiKey,
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.get(`${this.apiUrl}/me`, { headers: headerComToken });
   }
 
 }

@@ -12,7 +12,7 @@ export class FormularioRegistro {
   constructor(private auth: Auth) { }
 
   registroForm = new FormGroup({
-    name: new FormControl('', Validators.required),
+    nome: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
     cargo: new FormControl('', Validators.required),
