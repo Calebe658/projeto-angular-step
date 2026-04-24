@@ -8,10 +8,12 @@ import { Estoque } from './componentes/estoque/estoque';
 import { Login } from './componentes/login/login';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormularioRegistro } from './componentes/formulario-registro/formulario-registro';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [App, PainelAdmin, Dashboard, Estoque, Login, FormularioRegistro],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, MatCardModule, MatButtonModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })

@@ -1,0 +1,23 @@
+#mainDiv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.example-card {
+    max-width: 600px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#imgProduto {
+    margin: 0 auto;
+    width: 250px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+mat-card-content {
+    margin-top: auto;
+}
