@@ -1,1 +1,7 @@
-<p>painel-adm works!</p>
+<ul>
+    @for(usuario of usuarios; track usuario.id) {
+    <li>
+        Nome: {{usuario.nome}} / Email: {{usuario.email}}
+    </li>
+    }
+</ul>
