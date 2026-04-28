@@ -1,0 +1,15 @@
+<h1>{{ nome | uppercase }}</h1>
+
+<input [(ngModel)]="nome" placeholder="Digite seu nome" />
+
+<button (click)="habilitarDesabilitarBotao()">
+    Habilitar Botão
+</button>
+
+<button (click)="mostrarMensagem()" [disabled]="botaoDesabilitado">
+    Exibir mensagem
+</button>
+
+<p>Data atual: {{ hoje | date:'dd/MM/yyyy' }}</p>
+
+<p>Preço do produto: {{ preco | currency:'BRL' }}</p>

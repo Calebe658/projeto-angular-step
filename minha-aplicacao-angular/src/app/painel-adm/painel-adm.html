@@ -1,7 +1,7 @@
 <ul>
     @for(usuario of usuarios; track usuario.id) {
     <li>
-        Nome: {{usuario.nome}} / Email: {{usuario.email}}
+        Nome: {{usuario.nome | uppercase}} / Email: {{usuario.email}} / Salário: {{usuario.salario | currency: 'BRL'}}
     </li>
     }
 </ul>
