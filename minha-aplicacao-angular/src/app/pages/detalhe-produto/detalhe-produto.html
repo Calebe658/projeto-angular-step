@@ -1,1 +1,18 @@
-<p>Este é a página de detalhes do produto {{ id }}</p>
+@if (carregando()) {
+<p>Carregando produto...</p>
+
+} @else if (erro()) {
+<p>Erro ao carregar o produto.</p>
+<a routerLink="/">Voltar</a>
+
+} @else if (produto(); as p) {
+<h1>{{ p.title }}</h1>
+
+<img [src]="p.image" [alt]="p.title" width="150" />
+
+<p>{{ p.description }}</p>
+
+<p><strong>Preço:</strong> {{ p.price | currency:'BRL' }}</p>
+
+<a routerLink="/">Voltar</a>
+}

@@ -1,7 +1,17 @@
+<h2>Painel Administrativo</h2>
+
+@if (carregando()) {
+<p>Carregando produtos...</p>
+
+} @else {
+@for (usuario of usuarios; track usuario.id) {
 <ul>
-    @for(usuario of usuarios; track usuario.id) {
     <li>
-        Nome: {{usuario.nome | uppercase}} / Email: {{usuario.email}} / Salário: {{usuario.salario | currency: 'BRL'}}
+        <strong>Nome:</strong> {{ usuario.name.firstname }} {{ usuario.name.lastname }} <br>
+        <strong>Username:</strong> {{ usuario.username }} <br>
+        <strong>Email:</strong> {{ usuario.email }}
     </li>
-    }
 </ul>
+}
+
+}

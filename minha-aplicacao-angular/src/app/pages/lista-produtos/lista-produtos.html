@@ -1,13 +1,15 @@
 <h1>Lista de Produtos</h1>
 
+@if (carregando()) { 
+<p>Carregando produtos...</p>
+
+} @else {
 <ul>
+    @for (produto of produtos(); track produto.id) {
     <li>
-        <a [routerLink]="['/produto', 10]">Ver detalhes</a>
+        {{ produto.title }} -
+        <a [routerLink]="['/produto', produto.id]">Ver detalhes</a>
     </li>
+    }
 </ul>
-
-Lista de Produtos
-
-<p>
-    Ir para painel-adm: <a [routerLink]="['/painel-adm']">Me Clique!</a>
-</p>
+}
