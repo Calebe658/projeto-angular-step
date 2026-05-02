@@ -1,3 +1,4 @@
+
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../services/usuario';
@@ -21,7 +22,7 @@ export class PainelAdm implements OnInit {
         this.usuarios = resposta;
         this.carregando.set(false);
       },
-
+      
       error: (erro) => {
         console.error('Erro ao buscar usuários:', erro);
         this.carregando.set(false);

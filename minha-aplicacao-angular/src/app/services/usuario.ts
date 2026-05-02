@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class Usuario {
-  
+
   private http = inject(HttpClient);
   private apiUrl = 'https://fakestoreapi.com/users';
 
