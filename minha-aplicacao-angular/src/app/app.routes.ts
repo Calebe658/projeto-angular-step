@@ -34,6 +34,16 @@ export const routes: Routes = [
             import('./pages/produto-pai/produto-pai').then((m) => m.ProdutoPai),
     },
     {
+        path: 'cadastro-usuario',
+        loadComponent: () =>
+            import('./pages/cadastro-usuario/cadastro-usuario').then((m) => m.CadastroUsuario),
+    },
+    {
+        path: 'login-usuario',
+        loadComponent: () =>
+            import('./pages/login-usuario/login-usuario').then((m) => m.LoginUsuario),
+    },
+    {
         path: '**',
         redirectTo: 'produtos',
     }

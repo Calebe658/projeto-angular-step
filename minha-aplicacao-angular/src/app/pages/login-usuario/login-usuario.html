@@ -1,0 +1,23 @@
+<h1>Login de Usuário</h1>
+
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+    <div>
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" />
+
+        @if (email?.invalid && email?.touched) {
+        <p>Informe um email válido.</p>
+        }
+    </div>
+
+    <div>
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" formControlName="senha" />
+
+        @if (senha?.invalid && senha?.touched) {
+        <p>A senha deve ter pelo menos 6 caracteres.</p>
+        }
+    </div>
+
+    <button type="submit">Entrar</button>
+</form>
