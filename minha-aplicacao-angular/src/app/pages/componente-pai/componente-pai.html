@@ -1,0 +1,14 @@
+<h1>Componente Pai</h1>
+
+<p>Mensagem recebida do filho: {{ mensagemRecebida }}</p>
+
+<button (click)="alterarNome()">Alterar nome enviado ao filho</button>
+
+<hr />
+
+<app-componente-filho [nome]="nomeUsuario" (mensagemEnviada)="receberMensagem($event)"></app-componente-filho>
+
+<br />
+<br />
+
+<a routerLink="/produtos">Voltar para produtos</a>

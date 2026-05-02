@@ -24,6 +24,16 @@ export const routes: Routes = [
             import('./painel-adm/painel-adm').then((m) => m.PainelAdm), canActivate: [authGuard, roleGuard],
     },
     {
+        path: 'componente-pai',
+        loadComponent: () =>
+            import('./pages/componente-pai/componente-pai').then((m) => m.ComponentePai),
+    },
+    {
+        path: 'produto-pai',
+        loadComponent: () =>
+            import('./pages/produto-pai/produto-pai').then((m) => m.ProdutoPai),
+    },
+    {
         path: '**',
         redirectTo: 'produtos',
     }
