@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
-// import { authGuard } from './guards/auth.guard';
+import { authGuard } from './guards/auth-guard';
+import { roleGuard } from './guards/role-guard';
 
 export const routes: Routes = [
     {
@@ -15,11 +16,12 @@ export const routes: Routes = [
     {
         path: 'produto/:id',
         loadComponent: () =>
-            import('./pages/detalhe-produto/detalhe-produto').then((m) => m.DetalheProduto),
+            import('./pages/detalhe-produto/detalhe-produto').then((m) => m.DetalheProduto), canActivate: [roleGuard],
     },
     {
         path: 'painel-adm',
-        loadComponent: () => import('./painel-adm/painel-adm').then((m) => m.PainelAdm),
+        loadComponent: () =>
+            import('./painel-adm/painel-adm').then((m) => m.PainelAdm), canActivate: [authGuard, roleGuard],
     },
     {
         path: '**',
