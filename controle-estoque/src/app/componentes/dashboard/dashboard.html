@@ -1,5 +1,9 @@
+@if (carregando()) {
+<p>Carregando produtos...</p>
+
+} @else {
 <div id="mainDiv">
-    <mat-card *ngFor="let produto of produtos" class="example-card" appearance="outlined">
+    <mat-card *ngFor="let produto of produtos()" class="example-card" appearance="outlined">
 
         <mat-card-header>
             <mat-card-title>{{produto.title}}</mat-card-title>
@@ -20,3 +24,4 @@
         </mat-card-actions>
     </mat-card>
 </div>
+}
