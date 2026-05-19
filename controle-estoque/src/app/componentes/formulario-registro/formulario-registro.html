@@ -1,18 +1,73 @@
-<form [formGroup]="registroForm" (ngSubmit)="registrar()">
-    <input type="email" formControlName="email" placeholder="E-mail" />
-    <input type="password" formControlName="password" placeholder="Senha" />
-    <input type="text" formControlName="nome" placeholder="Nome" />
+<div class="main-container">
+    <form [formGroup]="registroForm" (ngSubmit)="registrar()">
 
-    <select formControlName="cargo">
-        <option value="">Selecione a função</option>
-        <option value="operacional">Operacional</option>
-        <option value="admin">Administrador</option>
-        <option value="gerente">Gerente operacional</option>
-    </select>
+        <!-- E-MAIL -->
+        <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
 
-    <button type="submit">Entrar</button>
-</form>
+            <input matInput type="email" formControlName="email" (blur)="updateErrorMessageEmail()"
+                placeholder="Digite o e-mail do usuário" required />
 
-<p *ngIf="registroForm.get('email')?.invalid">
-    E-mail inválido
-</p>
+            @if (registroForm.get('email')?.invalid) {
+            <mat-error>{{errorMessageInput()}}</mat-error>
+
+            }
+        </mat-form-field>
+
+        <!-- SENHA -->
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+
+            <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password"
+                placeholder="Digite a senha" (blur)="updateErrorMessagePassword()" required />
+
+            <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()" type="button">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            @if (registroForm.get('password')?.invalid) {
+            <mat-error>{{errorMessageInputPassword()}}</mat-error>
+
+            }
+        </mat-form-field>
+
+        <!-- NOME -->
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+
+            <input matInput type="text" formControlName="nome" placeholder="Digite o nome do usuário" required />
+
+            @if (registroForm.get('nome')?.hasError('required')) {
+            <mat-error>Você deve inserir um valor</mat-error>
+            
+            }
+        </mat-form-field>
+
+        <!-- SELECT -->
+        <mat-form-field appearance="outline">
+            <mat-label>Função</mat-label>
+
+            <mat-select formControlName="cargo">
+                <mat-option value="operacional">
+                    Operacional
+                </mat-option>
+
+                <mat-option value="admin">
+                    Administrador
+                </mat-option>
+
+                <mat-option value="gerente">
+                    Gerente operacional
+                </mat-option>
+            </mat-select>
+
+            @if (registroForm.get('cargo')?.hasError('required')) {
+            <mat-error>Você deve selecionar uma função</mat-error>
+
+            }
+        </mat-form-field>
+
+        <button matButton="tonal" type="submit">Cadastrar</button>
+    </form>
+</div>

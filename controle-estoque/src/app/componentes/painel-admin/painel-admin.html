@@ -1,1 +1,15 @@
-<app-formulario-registro></app-formulario-registro>
+<div class="admin-container">
+    <header class="admin-header">
+        <h1>Painel Administrativo</h1>
+        <p>Área restrita para gerenciamento de usuários</p>
+    </header>
+
+    <app-formulario-registro></app-formulario-registro>
+
+    <div class="buttons-container">
+        <button matButton="tonal" type="submit" class="action-buttons" (click)="logout()">Sair</button>
+
+        <button matButton="tonal" type="submit" class="action-buttons" (click)="redirectDashboard()">Ir para
+            dashboard</button>
+    </div>
+</div>

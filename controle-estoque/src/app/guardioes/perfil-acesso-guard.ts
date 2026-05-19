@@ -4,9 +4,10 @@ import { map } from 'rxjs/operators';
 import { Auth } from '../services/auth';
 
 export const perfilAcessoGuard: CanActivateFn = (route, state) => {
+
   const authService = inject(Auth);
   const router = inject(Router);
-  const token = localStorage.getItem('token');
+  const token = authService.buscarToken();
 
   return authService.verificarUsuario(token).pipe( // pipe faz a mesma coisa que o subscribe
     map((response: any) => {

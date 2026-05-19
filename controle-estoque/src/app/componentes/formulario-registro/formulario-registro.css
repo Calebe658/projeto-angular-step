@@ -1,0 +1,17 @@
+.main-container {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    width:500px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding: 52px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}

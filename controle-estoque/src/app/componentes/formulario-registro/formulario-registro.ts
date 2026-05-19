@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Auth } from '../../services/auth';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-formulario-registro',
@@ -9,7 +11,25 @@ import { Auth } from '../../services/auth';
   styleUrl: './formulario-registro.css',
 })
 export class FormularioRegistro {
-  constructor(private auth: Auth) { }
+  errorMessageInput = signal("");
+  errorMessageInputPassword = signal("");
+  hide = signal(true);
+
+  constructor(private auth: Auth) {
+    // Lógica para as mensagens do input
+
+    merge(
+      this.registroForm.get('email')!.statusChanges,
+      this.registroForm.get('email')!.valueChanges,
+      this.registroForm.get('password')!.statusChanges,
+      this.registroForm.get('password')!.valueChanges,
+    )
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.updateErrorMessageEmail();
+        this.updateErrorMessagePassword();
+      });
+  }
 
   registroForm = new FormGroup({
     nome: new FormControl('', Validators.required),
@@ -21,11 +41,44 @@ export class FormularioRegistro {
   registrar() {
     this.auth.registrar(this.registroForm.value).subscribe({
       next: (response) => {
-        console.log("Usuário registrado com sucesso!", response);
+        alert(`Usuário registrado com sucesso!`);
+        console.log("Usuário registrado:", response);
       },
       error: (error) => {
-        console.error("Erro ao registrar usuário:", error);
+        alert(`Erro ao registrar usuário:`);
+        console.error("Erro:", error);
       }
     })
+  }
+
+  // Mensagem de erro dos inputs
+
+  updateErrorMessageEmail() {
+    if (this.registroForm.get('email')!.hasError('required')) {
+      this.errorMessageInput.set('Você deve inserir um valor');
+
+    } else if (this.registroForm.get('email')!.hasError('email')) {
+      this.errorMessageInput.set('E-mail inválido');
+
+    } else {
+      this.errorMessageInput.set('');
+    }
+  }
+
+  updateErrorMessagePassword() {
+    if (this.registroForm.get('password')!.hasError('required')) {
+      this.errorMessageInputPassword.set('Você deve inserir um valor');
+
+    } else {
+      this.errorMessageInputPassword.set('');
+    }
+  }
+
+  // Input da Senha
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+
+    event.stopPropagation();
   }
 }
