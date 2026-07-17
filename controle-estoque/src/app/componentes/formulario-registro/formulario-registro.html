@@ -40,7 +40,7 @@
 
             @if (registroForm.get('nome')?.hasError('required')) {
             <mat-error>Você deve inserir um valor</mat-error>
-            
+
             }
         </mat-form-field>
 
@@ -49,16 +49,12 @@
             <mat-label>Função</mat-label>
 
             <mat-select formControlName="cargo">
-                <mat-option value="operacional">
-                    Operacional
+                <mat-option value="user">
+                    Usuário
                 </mat-option>
 
                 <mat-option value="admin">
                     Administrador
-                </mat-option>
-
-                <mat-option value="gerente">
-                    Gerente operacional
                 </mat-option>
             </mat-select>
 

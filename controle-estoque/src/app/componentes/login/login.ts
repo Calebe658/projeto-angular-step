@@ -39,14 +39,19 @@ export class Login {
   });
 
   login() {
-    this.auth.login(this.loginForm.value).subscribe({
+    const usuario = {
+      email: this.loginForm.value.email,
+      senha: this.loginForm.value.password
+    };
+
+    this.auth.login(usuario).subscribe({
       next: (response: any) => {
         this.auth.salvarToken(response.token);
         this.router.navigate(['/dashboard']);
       },
 
       error: (respostaErro: any) => {
-        this.errorMessage = respostaErro.error.error;
+        this.errorMessage = respostaErro.error.erro;
         alert(this.errorMessage);
       },
     });

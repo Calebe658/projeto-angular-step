@@ -11,7 +11,7 @@ export const perfilAcessoGuard: CanActivateFn = (route, state) => {
 
   return authService.verificarUsuario(token).pipe( // pipe faz a mesma coisa que o subscribe
     map((response: any) => {
-      const cargo = response.cargo;
+      const cargo = response.usuario.role;
       console.log(cargo);
 
       if (cargo === 'admin') {

@@ -12,7 +12,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   // verificação do token
   if (!auth.estaLogado()) {
 
-    console.log('Usuário sem token');
+    alert('Token expirado, faça login novamente.');
     router.navigate(['/login']);
 
     return false;
@@ -20,9 +20,10 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   return auth.verificarUsuario(token).pipe( // pipe faz a mesma coisa que o subscribe
     map((response: any) => {
-      const cargo = response.cargo;
 
-      if (cargo === 'admin') {  
+      const cargo = response.usuario.role;
+
+      if (cargo === 'admin') {
         console.log(`Acesso permitido: usuário autenticado, cargo: ${cargo}`);
 
         return true;

@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { ProdutosService } from '../../services/produtos-service';
 import { Auth } from '../../services/auth';
-import { Router } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface Rating {
   rate: number;
@@ -20,7 +23,8 @@ export interface Product {
 
 @Component({
   selector: 'app-dashboard',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,7 +49,7 @@ export class Dashboard implements OnInit {
         console.error(erro);
         this.carregando.set(false);
       }
-    })
+    });
 
     this.verificarAdmin();
   }
@@ -66,7 +70,7 @@ export class Dashboard implements OnInit {
 
     this.auth.verificarUsuario(token).subscribe({
       next: (response: any) => {
-        if (response.cargo === 'admin') {
+        if (response.usuario.role === 'admin') {
           this.usuarioAdmin.set(true);
 
         } else {

@@ -4,8 +4,6 @@ import { Dashboard } from './componentes/dashboard/dashboard';
 import { PainelAdmin } from './componentes/painel-admin/painel-admin';
 import { Estoque } from './componentes/estoque/estoque';
 import { Login } from './componentes/login/login';
-import { AuthGuard } from './guardioes/auth-guard';
-import { perfilAcessoGuard } from './guardioes/perfil-acesso-guard';
 import { roleGuard } from './guardioes/role-guard';
 
 const routes: Routes = [

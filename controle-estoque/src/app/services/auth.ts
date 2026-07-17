@@ -5,17 +5,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Auth {
-  apiUrl: string = 'https://projeto-node-step-git-main-fabios-projects-d2648344.vercel.app/api/auth';
+  apiUrl: string = 'https://projeto-nodejs-step-8rf7.vercel.app';
   apiKey: string = "Step@2025";
   headers = new HttpHeaders({
-    'x-api-key': this.apiKey,
+    'Content-Type': 'application/json'
   });
 
   constructor(private http: HttpClient) { }
 
   // essa função serve para cadastrar um novo usuário na API. O angular envia para ela.
   registrar(usuario: any) {
-    return this.http.post(`${this.apiUrl}/register`, usuario, { headers: this.headers });
+    return this.http.post(`${this.apiUrl}/registrar`, usuario, { headers: this.headers });
   }
 
   // essa função nesse serviço serve para logar um usuário na API.
@@ -50,7 +50,6 @@ export class Auth {
   // essa função nesse serviço serve para pegar os dados do usuário logado na API e verificar se ele está logado ou não.
   verificarUsuario(token: any) {
     const headerComToken = new HttpHeaders({
-      'x-api-key': this.apiKey,
       'Authorization': `Bearer ${token}`
     })
 

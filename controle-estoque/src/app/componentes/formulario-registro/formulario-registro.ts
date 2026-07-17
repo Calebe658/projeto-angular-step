@@ -39,14 +39,22 @@ export class FormularioRegistro {
   });
 
   registrar() {
-    this.auth.registrar(this.registroForm.value).subscribe({
+
+    const usuario = {
+      nome: this.registroForm.value.nome,
+      email: this.registroForm.value.email,
+      senha: this.registroForm.value.password,
+      role: this.registroForm.value.cargo,
+    };
+
+    this.auth.registrar(usuario).subscribe({
       next: (response) => {
         alert(`Usuário registrado com sucesso!`);
         console.log("Usuário registrado:", response);
       },
       error: (error) => {
         alert(`Erro ao registrar usuário:`);
-        console.error("Erro:", error);
+        console.error(`Erro: ${error.error.erro}`);
       }
     })
   }
